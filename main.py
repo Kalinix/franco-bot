@@ -51,6 +51,7 @@ async def on_message(message):
             return
 
 @client.command()
+@commands.has_permissions(kick_members = True)
 async def ping(ctx):
     await ctx.send(f'Pong')
 
@@ -61,6 +62,6 @@ async def limpia(ctx, amount):
 @client.command()
 @commands.has_permissions(kick_members = True)
 async def fusila(ctx, member : discord.Member, *, reason=None):
-    await member.ban(reason=reason)
+    await member.kick(reason=reason)
 
 client.run(TOKEN)
