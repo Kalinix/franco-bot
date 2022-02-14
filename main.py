@@ -74,7 +74,7 @@ async def warn(ctx, member :discord.Member, *, reason=None):
 @client.command()
 async def com(ctx, member:discord.Member, *, mensaje):
     await member.send(f'{mensaje}')
-    member = message.author
+    member:discord.Member = message.author
     await member.send(f'Mensaje enviado con éxito')
 
 client.run(TOKEN)
