@@ -66,8 +66,8 @@ async def fusila(ctx, member : discord.Member, *, reason=None):
     await member.kick(reason=reason)
 
 @client.command()
-async def warn(ctx, member :discord.Member, reason=None):
+async def warn(ctx, member :discord.Member, *, reason=None):
     await member.send(f'Has recibido un aviso por la siguiente razón: {reason}. Compórtate para la próxima vez.')
-    await ctx.send(f'{member} ha sido advertido por {reason} con éxito')
+    await ctx.send(f'{member.mention} ha sido advertido por {reason} con éxito')
 
 client.run(TOKEN)
