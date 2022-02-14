@@ -52,7 +52,7 @@ async def on_message(message):
 
 @client.command()
 async def ping(ctx):
-    await ctx.send(f'Pong {round(client.latency * 1000)}')
+    await ctx.send(f'Pong {round(client.latency * 1000)}ms')
 
 @client.command()
 async def limpia(ctx, amount):
