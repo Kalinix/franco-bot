@@ -14,6 +14,7 @@ client = commands.Bot(command_prefix='-')
 
 @client.event
 async def on_ready():
+    activity = discord.Game(name='MataRojos Simulator')
     print('Conectado como {0.user}'.format(client))
 
 @client.event
@@ -74,7 +75,6 @@ async def warn(ctx, member :discord.Member, *, reason=None):
 @client.command()
 async def com(ctx, member:discord.Member, *, mensaje):
     await member.send(f'{mensaje}')
-    member:discord.Member = message.author
-    await member.send(f'Mensaje enviado con éxito')
+    await ctx.send(f'"{mensaje}" enviado con éxito a {member.mention}')
 
 client.run(TOKEN)
