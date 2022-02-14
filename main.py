@@ -71,4 +71,10 @@ async def warn(ctx, member :discord.Member, *, reason=None):
     await ctx.send(f'{member.mention} ha sido advertido por {reason} con éxito')
     await ctx.message.delete()
 
+@client.command()
+async def com(ctx, member:discord.Member, *, mensaje):
+    await member.send(f'{mensaje}')
+    member = message.author
+    member.send(f'Mensaje enviado con éxito')
+
 client.run(TOKEN)
