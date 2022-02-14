@@ -25,7 +25,7 @@ async def on_message(message):
     print(f'{user}: {user_msg} ({channel})')
 
     if message.content.startswith('') and message.author.id == 715498111325306900:
-        res = random.randint(1 , 4)
+        res = random.randint(1 , 20)
         mr=message.reply
         if res == 1:
             await mr('Cállate Aitor')
@@ -35,6 +35,8 @@ async def on_message(message):
             await mr('¿Te quieres callar?')
         elif res == 4:
             await mr('Silencio rojo asqueroso')
+        elif res == 5 or 6 or 7 or 8 or 9 or 10 or 11 or 12 or 13 or 14 or 15 or 16 or 17 or 18 or 19 or 20:
+            return
     
     elif message.content.startswith('') and message.author.id == 720270681589153847:
         res = random.randint(1 , 20)
