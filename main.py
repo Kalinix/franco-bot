@@ -51,10 +51,9 @@ async def on_message(message):
             return
 
 @client.command()
-@commands.commands (name = 'ping')
 @commands.has_guild_permissions(kick_members = True)
 async def ping(ctx):
-    await ctx.send(f'Test')
+    await ctx.send(f'Pong')
 
 @client.command()
 async def limpia(ctx, amount):
