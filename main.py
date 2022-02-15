@@ -86,4 +86,18 @@ async def inv(ctx):
     inv = await ctx.channel.create_invite(max_age = 300)
     await ctx.send('Aquí tienes una invitación ' + str(inv))
 
+@client.command()
+@commands.has_guild_permissions(manage_messages=True)
+async def warnafk(ctx, member:discord.Member):
+    await member.send(f'Has recibido un aviso debido a tu reciente inactividad, esto podría conllevar una expulsión a futuro.')
+    await ctx.send(f'Advertencia enviada a {member.mention}.')
+    await ctx.message.delete()
+
+@client.command()
+@commands.has_guild_permissions(manage_messages=True)
+async def warnafkog(ctx, member:discord.Member):
+    await member.send(f'Has recibido un aviso debido a tu reciente inactividad, debido a tu condición de miembro originario, no será tomada en cuenta, pero estaría bien que te metieras algo más.')
+    await ctx.send(f'Advertencia enviada a {member.mention}.')
+    await ctx.message.delete()
+
 client.run(TOKEN)
