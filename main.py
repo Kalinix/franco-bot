@@ -110,7 +110,7 @@ async def pab(ctx, member : discord.Member):
     else:
         for i in range (0, 9):
             await member.send(f'Cállate Pablo')
-            await ctx.send(str(i + 1 ) + ' mensajes enviados')
-
+            await ctx.send(str(i + 1 ) + ' mensajes enviados', delete_after = 4)
+        await ctx.message.delete()
 
 client.run(TOKEN)
