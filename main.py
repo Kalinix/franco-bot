@@ -1,4 +1,5 @@
 from ast import Delete
+from distutils import command
 from email import message
 from typing import AsyncIterable
 import os, random, discord, time
@@ -101,5 +102,15 @@ async def warnafkog(ctx, member:discord.Member):
     await member.send(f'Has recibido un aviso debido a tu reciente inactividad, debido a tu condición de miembro originario, no será tomada en cuenta, pero estaría bien que te metieras algo más.')
     await ctx.send(f'Advertencia enviada a {member.mention}.', delete_after = 4)
     await ctx.message.delete()
+
+@client.command()
+async def pab(ctx, member : discord.Member):
+    if message.author.id == 478617818816839689:
+        return
+    else:
+        for i in range (0, 10):
+            await member.send(f'Cállate Pablo')
+            await ctx.send(str(i + 1 ) + ' mensajes enviados')
+
 
 client.run(TOKEN)
