@@ -1,10 +1,11 @@
+from ast import Delete
 from email import message
 from typing import AsyncIterable
-import discord
-import os
+import os, random, discord, time
 from dotenv import load_dotenv
 from discord.ext import commands
-import random
+
+
 
 client = discord.Client()
 
@@ -72,13 +73,13 @@ async def fusila(ctx, member : discord.Member, *, reason=None):
 @commands.has_guild_permissions(manage_messages = True)
 async def warn(ctx, member :discord.Member, *, reason=None):
     await member.send(f'Has recibido un aviso por la siguiente razón: {reason}. Compórtate para la próxima vez.')
-    await ctx.send(f'{member.mention} ha sido advertido por {reason} con éxito')
+    await ctx.send(f'{member.mention} ha sido advertido por {reason} con éxito', delete_after=4)
     await ctx.message.delete()
 
 @client.command()
 async def com(ctx, member:discord.Member, *, mensaje):
     await member.send(f'{mensaje}')
-    await ctx.send(f'"{mensaje}" enviado con éxito a {member.mention}')
+    await ctx.send(f'"{mensaje}" enviado con éxito a {member.mention}', delete_after = 4)
 
 @client.command()
 @commands.has_guild_permissions(administrator = True)
@@ -90,14 +91,14 @@ async def inv(ctx):
 @commands.has_guild_permissions(manage_messages=True)
 async def warnafk(ctx, member:discord.Member):
     await member.send(f'Has recibido un aviso debido a tu reciente inactividad, esto podría conllevar una expulsión a futuro.')
-    await ctx.send(f'Advertencia enviada a {member.mention}.')
+    await ctx.send(f'Advertencia enviada a {member.mention}.', delete_after = 4)
     await ctx.message.delete()
 
 @client.command()
 @commands.has_guild_permissions(manage_messages=True)
 async def warnafkog(ctx, member:discord.Member):
     await member.send(f'Has recibido un aviso debido a tu reciente inactividad, debido a tu condición de miembro originario, no será tomada en cuenta, pero estaría bien que te metieras algo más.')
-    await ctx.send(f'Advertencia enviada a {member.mention}.')
+    await ctx.send(f'Advertencia enviada a {member.mention}.', delete_after = 4)
     await ctx.message.delete()
 
 client.run(TOKEN)
