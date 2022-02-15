@@ -59,6 +59,7 @@ async def ping(ctx):
     await ctx.send(f'Aquí estoy, mi tiempo de respuesta es de {round(client.latency * 1000)}ms')
 
 @client.command()
+@commands.has_guild_permissions(manage_messages = True)
 async def limpia(ctx, amount):
     await ctx.channel.purge(limit=int(amount))
 
@@ -68,6 +69,7 @@ async def fusila(ctx, member : discord.Member, *, reason=None):
     await member.kick(reason=reason)
 
 @client.command()
+@commands.has_guild_permissions(manage_messages = True)
 async def warn(ctx, member :discord.Member, *, reason=None):
     await member.send(f'Has recibido un aviso por la siguiente razón: {reason}. Compórtate para la próxima vez.')
     await ctx.send(f'{member.mention} ha sido advertido por {reason} con éxito')
@@ -77,5 +79,11 @@ async def warn(ctx, member :discord.Member, *, reason=None):
 async def com(ctx, member:discord.Member, *, mensaje):
     await member.send(f'{mensaje}')
     await ctx.send(f'"{mensaje}" enviado con éxito a {member.mention}')
+
+@client.command()
+@commands.has_guild_permissions(administrator = True)
+async def inv(ctx):
+    inv = await ctx.channel.create_invite(max_age = 300)
+    ctx.send('Aquí tienes una invitación ' + inv)
 
 client.run(TOKEN)
