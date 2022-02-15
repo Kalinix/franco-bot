@@ -80,6 +80,7 @@ async def warn(ctx, member :discord.Member, *, reason=None):
 async def com(ctx, member:discord.Member, *, mensaje):
     await member.send(f'{mensaje}')
     await ctx.send(f'"{mensaje}" enviado con éxito a {member.mention}', delete_after = 4)
+    await ctx.message.delete()
 
 @client.command()
 @commands.has_guild_permissions(administrator = True)
