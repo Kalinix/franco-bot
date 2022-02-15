@@ -84,6 +84,6 @@ async def com(ctx, member:discord.Member, *, mensaje):
 @commands.has_guild_permissions(administrator = True)
 async def inv(ctx):
     inv = await ctx.channel.create_invite(max_age = 300)
-    ctx.send('Aquí tienes una invitación ' + str (inv))
+    await ctx.send('Aquí tienes una invitación ' + inv)
 
 client.run(TOKEN)
