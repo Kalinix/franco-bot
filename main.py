@@ -106,11 +106,15 @@ async def warnafkog(ctx, member:discord.Member):
 @client.command()
 async def pab(ctx, member : discord.Member):
     if message.author.id == 478617818816839689:
-        return
+        await ctx.send('Cállate Pablo')
     else:
-        for i in range (0, 10):
-            await member.send(f'Cállate Pablo')
-            await ctx.send(str(i + 1 ) + ' mensajes enviados')
+        await member.send(f'Cállate Pablo')
+        await member.send(f'Cállate Pablo')
+        await member.send(f'Cállate Pablo')
+        await member.send(f'Cállate Pablo')
+        await member.send(f'Cállate Pablo')
+        
+
 
 
 client.run(TOKEN)
