@@ -113,4 +113,10 @@ async def pab(ctx, member : discord.Member, mensaje):
             await ctx.send(str(i + 1 ) + ' mensajes enviados', delete_after = 4)
         await ctx.message.delete()
 
+@client.command()
+async def pfp(ctx, member : discord.Member):
+    author = member
+    pfp = author.avatar_url
+    await ctx.sendx (pfp)
+
 client.run(TOKEN)
