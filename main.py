@@ -117,6 +117,6 @@ async def pab(ctx, member : discord.Member, mensaje):
 async def pfp(ctx, member : discord.Member):
     author = member
     pfp = author.avatar_url
-    await ctx.sendx (pfp)
+    await ctx.send(pfp)
 
 client.run(TOKEN)
