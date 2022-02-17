@@ -123,6 +123,7 @@ async def pfp(ctx, member : discord.Member):
 async def pfppriv(ctx, member : discord.Member):
     author = member
     pfp = author.avatar_url
-    await client.send_message(ctx.message.author, pfp)
+    user = ctx.author
+    await user.send(pfp)
     
 client.run(TOKEN)
