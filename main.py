@@ -125,5 +125,6 @@ async def pfppriv(ctx, member : discord.Member):
     pfp = author.avatar_url
     user = ctx.author
     await user.send(pfp)
+    await ctx.message.delete()
     
 client.run(TOKEN)
