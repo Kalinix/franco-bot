@@ -6,7 +6,18 @@ import os, random, discord, time
 from dotenv import load_dotenv
 from discord.ext import commands
 
-
+comandos = '''
+-ping
+-limpia Borra un número de mensajes.
+-fusila Banea a un miembro
+-warn Manda a un aviso a un miembro.
+-warnafk Manda un aviso predefinido a un miembro por inactividad.
+-warnafkog Manda un aviso predefinido a un miembro por inactividad (usar solo en miembros originales).
+-com Manda un mensaje personalizado a los DM de un miembro.
+-inv Manda una invitación temporal al canal en el que se manda el comando.
+-pfp Muestra la foto de perfil de un miembro.
+-pfppriv Muestra la foto de perfil de un miembro al DM de quien haya usado el comando (el comando se borra automáticamente).
+'''
 
 client = discord.Client()
 
@@ -126,5 +137,10 @@ async def pfppriv(ctx, member : discord.Member):
     user = ctx.author
     await user.send(pfp)
     await ctx.message.delete()
+    
+@client.command()
+async def help(ctx):
+    embed = discord.Embed(title = 'Lista de comandos', description = comandos)
+    await ctx.author.send(embed = embed)
     
 client.run(TOKEN)
