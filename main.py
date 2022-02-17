@@ -139,7 +139,7 @@ async def pfppriv(ctx, member : discord.Member):
     await ctx.message.delete()
     
 @client.command()
-async def help(ctx):
+async def info(ctx):
     embed = discord.Embed(title = 'Lista de comandos', description = comandos)
     await ctx.author.send(embed = embed)
     
