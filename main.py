@@ -118,5 +118,11 @@ async def pfp(ctx, member : discord.Member):
     author = member
     pfp = author.avatar_url
     await ctx.send(pfp)
-
+    
+@client.command()
+async def pfppriv(ctx, member : discord.Member):
+    author = member
+    pfp = author.avatar_url
+    await client.send_message(ctx.message.author, pfp)
+    
 client.run(TOKEN)
