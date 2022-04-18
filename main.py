@@ -88,9 +88,14 @@ async def inv(ctx):
 
 @client.command()
 @commands.has_guild_permissions(manage_messages=True)
-async def warnafk(ctx, member:discord.Member):
-    await member.send(f'Has recibido un aviso debido a tu reciente inactividad, esto podría conllevar una expulsión a futuro.')
-    await ctx.send(f'Advertencia enviada a {member.mention}.', delete_after = 4)
+async def warnafk(ctx, member1: discord.Member, member2: discord.Member, member3: discord.Member, member4: discord.Member, member5: discord.Member):
+    await member1.send(f'Has recibido un aviso debido a tu reciente inactividad, esto podría conllevar una expulsión a futuro.')
+    await member2.send(f'Has recibido un aviso debido a tu reciente inactividad, esto podría conllevar una expulsión a futuro.')
+    await member3.send(f'Has recibido un aviso debido a tu reciente inactividad, esto podría conllevar una expulsión a futuro.')
+    await member4.send(f'Has recibido un aviso debido a tu reciente inactividad, esto podría conllevar una expulsión a futuro.')
+    await member5.send(f'Has recibido un aviso debido a tu reciente inactividad, esto podría conllevar una expulsión a futuro.')
+    await ctx.send(f'Advertencia enviada a {member1.mention} {member2.mention} {member3.mention} {member4.mention} {member5.mention}')
+
     await ctx.message.delete()
 
 @client.command()
