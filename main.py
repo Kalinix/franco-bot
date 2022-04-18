@@ -52,20 +52,6 @@ async def on_message(message):
             await mr('Silencio rojo asqueroso')
         elif res == 5 or 6 or 7 or 8 or 9 or 10 or 11 or 12 or 13 or 14 or 15 or 16 or 17 or 18 or 19 or 20:
             return
-    
-    elif message.content.startswith('') and message.author.id == 720270681589153847:
-        res = random.randint(1 , 20)
-        mr=message.reply
-        if res == 1:
-            await mr('Cállate roja')
-        elif res == 2:
-            await mr('Roja muerta abono pa la huerta')
-        elif res == 3:
-            await mr('¿No tienes que chupársela a Aitor o algo?')
-        elif res == 4:
-            await mr('A la cocina')
-        elif res == 5 or 6 or 7 or 8 or 9 or 10 or 11 or 12 or 13 or 14 or 15 or 16 or 17 or 18 or 19 or 20:
-            return
 
 @client.command()
 async def ping(ctx):
