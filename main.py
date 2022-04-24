@@ -34,10 +34,20 @@ async def on_ready():
 @client.event
 async def on_message(message):
     await client.process_commands(message)
-    user = str(message.author).split('#')[0]
-    user_msg = str(message.content)
-    channel = str(message.channel.name)
-    print(f'{user}: {user_msg} ({channel})')
+    
+    if message.channel.name == None:
+        user = str(message.author).split('#')[0]
+        user_msg = str(message.content)
+        log = (f'**{user}:** {user_msg}')
+        embed = discord.Embed(title = '', description = log)
+        channel = bot.get_channel(967781655324549210)
+        await channel.send(embed = embed)
+    
+    else:    
+        user = str(message.author).split('#')[0]
+        user_msg = str(message.content)
+        channel = str(message.channel.name)
+        print(f'{user}: {user_msg} ({channel})')
 
     if message.content.startswith('') and message.author.id == 715498111325306900:
         res = random.randint(1 , 20)
