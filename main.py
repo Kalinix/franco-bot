@@ -1,11 +1,12 @@
 from ast import Delete
-from distutils import command
+from setuptools import command
 from email import message
 from typing import AsyncIterable
 import os, random, discord, time
 from dotenv import load_dotenv
 from discord.ext import commands
 from abc import ABCMeta
+
 
 comandos = '''
 -ping
