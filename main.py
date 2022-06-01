@@ -5,6 +5,7 @@ from typing import AsyncIterable
 import os, random, discord, time
 from dotenv import load_dotenv
 from discord.ext import commands
+from abc import ABCMeta
 
 comandos = '''
 -ping
@@ -35,13 +36,14 @@ async def on_ready():
 async def on_message(message):
     await client.process_commands(message)
     
-    if message.channel.name == None:
-        user = str(message.author).split('#')[0]
-        user_msg = str(message.content)
-        log = (f'**{user}:** {user_msg}')
-        embed = discord.Embed(title = '', description = log)
-        channel = bot.get_channel(967781655324549210)
-        await channel.send(embed = embed)
+    if message.channel.type is discord.ChannelType.private:
+        if message.author.id != 853660999558889492:
+            user = str(message.author).split('#')[0]
+            user_msg = str(message.content)
+            log = (f'**{user}:** {user_msg}')
+            embed = discord.Embed(title = '', description = log)
+            channel = client.get_channel(967781655324549210)
+            await channel.send(embed = embed)
     
     else:    
         user = str(message.author).split('#')[0]
@@ -68,7 +70,6 @@ async def ping(ctx):
     await ctx.send(f'Aquí estoy, mi tiempo de respuesta es de {round(client.latency * 1000)}ms')
 
 @client.command()
-@commands.has_guild_permissions(manage_messages = True)
 async def limpia(ctx, amount):
     await ctx.channel.purge(limit=int(amount))
 
@@ -87,7 +88,13 @@ async def warn(ctx, member :discord.Member, *, reason=None):
 @client.command()
 async def com(ctx, member:discord.Member, *, mensaje):
     await member.send(f'{mensaje}')
-    await ctx.send(f'"{mensaje}" enviado con éxito a {member.mention}', delete_after = 4)
+    await ctx.send(f'"{mensaje}" enviado con éxito a {member.mention}', delete_after = 2)
+    await ctx.message.delete()
+
+@client.command()
+async def anuncia(ctx, channel:discord.TextChannel, *, mensaje):
+    await channel.send(f'{mensaje}')
+    await ctx.send(f'"{mensaje}" enviado con éxito a en {channel}', delete_after = 2)
     await ctx.message.delete()
 
 @client.command()
@@ -143,5 +150,3 @@ async def pfppriv(ctx, member : discord.Member):
 async def info(ctx):
     embed = discord.Embed(title = 'Lista de comandos', description = comandos)
     await ctx.author.send(embed = embed)
-    
-client.run(TOKEN)
