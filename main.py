@@ -177,6 +177,7 @@ async def dm(ctx):
     await ctx.message.delete()
     for member in ctx.guild.members:
         try:
+            print (member.id)
             if member.id == 8979879879:
                 pass
             else:
