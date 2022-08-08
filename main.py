@@ -1,12 +1,11 @@
 from ast import Delete
-from setuptools import command
+from distutils import command
 from email import message
 from typing import AsyncIterable
 import os, random, discord, time
 from dotenv import load_dotenv
 from discord.ext import commands
 from abc import ABCMeta
-
 
 comandos = '''
 -ping
@@ -72,12 +71,16 @@ async def ping(ctx):
 
 @client.command()
 async def limpia(ctx, amount):
-    await ctx.channel.purge(limit=int(amount))
+    if ctx.author.id == 493802014942429194:
+        await ctx.send ('Silencio')
+    else:
+        await ctx.channel.purge(limit=int(amount))
 
 @client.command()
 @commands.has_guild_permissions(kick_members = True)
 async def fusila(ctx, member : discord.Member, *, reason=None):
     await member.kick(reason=reason)
+    await ctx.send(f'{member.mention} ha sido fusilado con éxito')
 
 @client.command()
 @commands.has_guild_permissions(manage_messages = True)
@@ -106,13 +109,28 @@ async def inv(ctx):
 
 @client.command()
 @commands.has_guild_permissions(manage_messages=True)
-async def warnafk(ctx, member1: discord.Member, member2: discord.Member, member3: discord.Member, member4: discord.Member, member5: discord.Member):
+async def warnafk(ctx, member1: discord.Member = None, member2: discord.Member = None, member3: discord.Member = None, member4: discord.Member = None, member5: discord.Member = None):
+    enviados = ['']
+
     await member1.send(f'Has recibido un aviso debido a tu reciente inactividad, esto podría conllevar una expulsión a futuro.')
-    await member2.send(f'Has recibido un aviso debido a tu reciente inactividad, esto podría conllevar una expulsión a futuro.')
-    await member3.send(f'Has recibido un aviso debido a tu reciente inactividad, esto podría conllevar una expulsión a futuro.')
-    await member4.send(f'Has recibido un aviso debido a tu reciente inactividad, esto podría conllevar una expulsión a futuro.')
-    await member5.send(f'Has recibido un aviso debido a tu reciente inactividad, esto podría conllevar una expulsión a futuro.')
-    await ctx.send(f'Advertencia enviada a {member1.mention} {member2.mention} {member3.mention} {member4.mention} {member5.mention}')
+    enviados.append(member1.mention)
+    if member2 != None:
+        await member2.send(f'Has recibido un aviso debido a tu reciente inactividad, esto podría conllevar una expulsión a futuro.')
+        enviados.append(member2.mention)
+        
+    if member3 != None:
+        await member3.send(f'Has recibido un aviso debido a tu reciente inactividad, esto podría conllevar una expulsión a futuro.')
+        enviados.append(member3.mention)
+
+    if member4 != None:
+        await member4.send(f'Has recibido un aviso debido a tu reciente inactividad, esto podría conllevar una expulsión a futuro.')
+        enviados.append(member4.mention)
+
+    if member5 != None:
+        await member5.send(f'Has recibido un aviso debido a tu reciente inactividad, esto podría conllevar una expulsión a futuro.')
+        enviados.append(member5.mention)
+
+    await ctx.send('Advertencia enviada a' + ' '.join(enviados), delete_after = 2)
 
     await ctx.message.delete()
 
@@ -151,3 +169,11 @@ async def pfppriv(ctx, member : discord.Member):
 async def info(ctx):
     embed = discord.Embed(title = 'Lista de comandos', description = comandos)
     await ctx.author.send(embed = embed)
+
+@client.command()
+async def dmall(ctx, *, mensaje):
+    for m in client.get_all_members():
+        await m.send (f'{mensaje}')
+        await ctx.send (f'Mensajes enviados con éxito')
+    
+client.run(TOKEN)
