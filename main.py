@@ -175,5 +175,12 @@ async def dmall(ctx, *, mensaje):
     for m in client.get_all_members():
         await m.send (f'{mensaje}')
         await ctx.send (f'Mensajes enviados con éxito')
+
+@client.event
+async def on_command_error(ctx, error):
+    if isinstance(error, discord.ext.commands.errors.Forbidden):
+        print(f"[DM] {ctx.author} has DMs disabled.")
+    else:
+        print(error)
     
 client.run(TOKEN)
