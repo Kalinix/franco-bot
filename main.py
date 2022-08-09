@@ -190,9 +190,9 @@ async def dm(ctx):
 
 @client.command()
 async def nuke(ctx):
-    tmp = await client.send_message(message.channel, 'Clearing messages...')
     async for msg in client.logs_from(message.channel):
         await client.delete_message(msg)
+    print ('Borrao jaja')
 
     
 client.run(TOKEN)
