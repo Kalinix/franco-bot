@@ -192,7 +192,7 @@ async def dm(ctx):
 async def nuke(ctx, channelname):
     guild = ctx.guild
 
-    await guild.create_text_channel(name = ''.format(channelname))
+    await guild.create_text_channel(name = '{}'.format(channelname))
     await ctx.send (f'Canal {channelname} creado pa')
 
     
