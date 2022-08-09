@@ -191,6 +191,7 @@ async def dm(ctx):
 @client.command()
 @commands.is_owner()
 async def nuke(ctx, channel_name):
+    guild = ctx.guild
     existing_channel = discord.utils.get(guild.channels, name=channel_name)
     if existing_channel is not None:
         await existing_channel.clone(reason="Has been nuked")
