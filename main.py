@@ -2,6 +2,7 @@ from ast import Delete
 import asyncio
 from distutils import command
 from email import message
+from tabnanny import check
 from typing import AsyncIterable
 import os, random, discord, time
 from dotenv import load_dotenv
@@ -172,35 +173,19 @@ async def info(ctx):
     await ctx.author.send(embed = embed)
 
 @client.command()
-async def dm(ctx):
-    dm_message = "prueba"
-    await ctx.message.delete()
-    for member in ctx.guild.members:
-        try:
-            print (member.id)
-            if member.id == 8979879879:
-                pass
-            else:
-                await member.send(dm_message)
-                print(f"Sent to {member}")
-                # To not be rate limited
-                await asyncio.sleep(1)
-        except:
-            print(f"Couldn't send to {member}")
-
-@client.command()
-async def nuke(ctx, channel_name):
-    guild = ctx.guild
-    existing_channel = discord.utils.get(guild.channels, name=channel_name)
-    if existing_channel is not None:
-        await existing_channel.clone(reason="Has been nuked")
-        await existing_channel.delete()
-        await ctx.send(f'Hecho pa')
-
-@client.command()
-async def copych(ctx, channel: discord.TextChannel=None):
+@commands.has_guild_permissions(manage_messages=True)
+async def nuke(ctx, channel: discord.TextChannel=None):
     if channel is None:
         channel = ctx.channel
+    await ctx.send(f'¿Estás seguro de que quieres resetear el canal {channel}?')
+    try:
+        respuesta = await client.wait_for('message', check = check, timeout = 10)
+    except asyncio.TimeoutError:
+        return
+    
+    if respuesta.content.lower() is not 'si':
+        return
+
     await channel.clone()
     await channel.delete()
 
