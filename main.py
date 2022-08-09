@@ -202,7 +202,7 @@ async def copych(ctx, channel: discord.TextChannel=None):
     if channel is None:
         channel = ctx.channel
     await channel.clone()
-    await channel.delete
+    await channel.delete()
 
     
 client.run(TOKEN)
