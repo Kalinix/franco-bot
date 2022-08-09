@@ -177,15 +177,6 @@ async def info(ctx):
 async def nuke(ctx, channel: discord.TextChannel=None):
     if channel is None:
         channel = ctx.channel
-    await ctx.send(f'¿Estás seguro de que quieres resetear el canal {channel}?')
-    try:
-        respuesta = await client.wait_for('message', check = check, timeout = 10)
-    except asyncio.TimeoutError:
-        return
-    
-    if respuesta.content.lower() not in (f"si", f"s"):
-        return
-
     await channel.clone()
     await channel.delete()
 
