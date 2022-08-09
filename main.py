@@ -188,5 +188,11 @@ async def dm(ctx):
         except:
             print(f"Couldn't send to {member}")
 
+@client.command()
+async def nuke(ctx):
+    tmp = await client.send_message(message.channel, 'Clearing messages...')
+    async for msg in client.logs_from(message.channel):
+        await client.delete_message(msg)
+
     
 client.run(TOKEN)
