@@ -189,7 +189,6 @@ async def dm(ctx):
             print(f"Couldn't send to {member}")
 
 @client.command()
-@commands.is_owner()
 async def nuke(ctx, channel_name):
     guild = ctx.guild
     existing_channel = discord.utils.get(guild.channels, name=channel_name)
@@ -197,6 +196,13 @@ async def nuke(ctx, channel_name):
         await existing_channel.clone(reason="Has been nuked")
         await existing_channel.delete()
         await ctx.send(f'Hecho pa')
+
+@client.command()
+async def copych(ctx, channel: discord.TextChannel=None):
+    if channel is None:
+        channel = ctx.channel
+
+    await channel.clone()
 
     
 client.run(TOKEN)
