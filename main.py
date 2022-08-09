@@ -183,7 +183,7 @@ async def nuke(ctx, channel: discord.TextChannel=None):
     except asyncio.TimeoutError:
         return
     
-    if respuesta.content.lower() is not 'si':
+    if respuesta.content.lower() != 'si':
         return
 
     await channel.clone()
