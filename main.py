@@ -189,9 +189,11 @@ async def dm(ctx):
             print(f"Couldn't send to {member}")
 
 @client.command()
-async def nuke(ctx):
-    await ctx.channel.purge()
-    print ('Borrao jaja')
+async def nuke(ctx, channelname):
+    guild = ctx.guild
+
+    await guild.create_text_channel(name = ''.format(channelname))
+    await ctx.send (f'Canal {channelname} creado pa')
 
     
 client.run(TOKEN)
